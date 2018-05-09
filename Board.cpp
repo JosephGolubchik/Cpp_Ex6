@@ -20,7 +20,7 @@ Board& Board::operator=(char w){
 Board& Board::operator=(Board& b){
     for (int i = 0; i < size; i++) {
         for(int j = 0; j < size; j++){
-            //pBoard[i][j].data=b.pBoard[i][j].data;
+            pBoard[i][j].data=b.pBoard[i][j].data;
         }
     }
     return *this;
