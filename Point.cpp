@@ -1,41 +1,23 @@
-#pragma once
+#include "Board.h"
+#include "Point.h"
 #include <iostream>
-#include "IllegalCharException.h"
 using namespace std;
 
-class Point{
-    public:
-    int x;
-    int y;
-    char data;
+Point Point::operator=(const char c){
     
-    Point(){
-        data = '.';
+    if (c == '.' || c == 'X' || c == 'O')
+        data = c;
+    else {
+        IllegalCharException ex {c};
+        throw ex;
     }
-    
-    Point(int x,int y){
-        this->x = x;
-        this->y = y;
-        this->data = '.';
-    }
-    
-    Point(const Point & p)
-    {
-        this->x = p.x;
-        this->y = p.y;
-        this->data = p.data;
-    }
-    
-    Point operator=(const char c);
-    
-    friend ostream& operator<<(ostream& os, Point& p) {  
-        os << p.data;
-        return os; 
-    }
-};
+    return *this;
+}
 
-    
+bool Point::operator==(const char c){
+    return data == c;
+}
 
-
-
-
+// char operator= (char c, Point& p){ 
+//     return p.data;
+// }
