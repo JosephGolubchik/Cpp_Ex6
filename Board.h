@@ -25,7 +25,7 @@ class Board {
         }
     }
     
-    Board(Board& b){
+    Board(const Board& b){
         size = b.size;
         pBoard = new Point*[size];
         for(int i = 0; i < size; i++){
@@ -40,11 +40,12 @@ class Board {
         *this = b;
     }
     
-    Board& operator=(char w);
-    Board& operator=(Board& b);
-    friend ostream& operator<<(ostream& os, Board& b);
+    Board& operator=(const char w);
+    Board& operator=(const Board& b);
+    friend ostream& operator<<(ostream& os, Board const& b);
     int getIndex(int x,int y);
     Point& operator[](Point p);
-    // void free();
-    // ~Board();
+    const Point& operator[](Point p) const;
+    void free();
+    ~Board();
 };
