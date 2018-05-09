@@ -14,6 +14,10 @@ Point Point::operator=(const char c){
     return *this;
 }
 
+Point::operator char(){
+    return data;
+}
+
 bool Point::operator==(const char c){
     if(data == c){
         return data == c;
