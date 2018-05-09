@@ -32,11 +32,10 @@ class Point{
         os << p.data;
         return os; 
     }
-    
-    bool operator==(const char c);
     operator char();
 };
 
+bool operator == (Point const &, char const &);
 // char operator=(char c, Point& p);
 
 
