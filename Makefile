@@ -1,18 +1,13 @@
 CXX=clang++-5.0
 CXXFLAGS=-std=c++17
 
-all: main.o Board.o Point.o
-	$(CXX) Board.o Point.o main.o
-	./a.out
+all: Board.o Point.o
 
-Board.o: Board.cpp Board.h
-	$(CXX) $(CXXFLAGS) -c Board.cpp -o Board.o
-	
-Point.o: Point.cpp Point.h
-	$(CXX) $(CXXFLAGS) -c Point.cpp -o Point.o
+Board.o: Board.cpp Board.h Point.h
+	$(CXX) $(CXXFLAGS) --compile Board.cpp -o Board.o
 
-main.o: main.cpp Board.h Point.o
-	$(CXX) $(CXXFLAGS) -c main.cpp -o main.o
+Cell.o: Point.cpp Point.h
+	$(CXX) $(CXXFLAGS) --compile Point.cpp -o Point.o
 
-clean:
+clean: 
 	rm *.o a.out
