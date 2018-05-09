@@ -45,4 +45,6 @@ class Board {
     friend ostream& operator<<(ostream& os, Board& b);
     int getIndex(int x,int y);
     Point& operator[](Point p);
+    // void free();
+    // ~Board();
 };
