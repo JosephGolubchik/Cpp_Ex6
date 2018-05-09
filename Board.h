@@ -8,23 +8,39 @@ using namespace std;
 class Board {
     public:
     int size;
-    char* pBoard;
+    Point **pBoard;
     char temp;
     
-    Board(int size):size(size),
-    pBoard(new char [size*size]){
-        operator=('.');
+    Board(int size){
+        this->size = size;
+        pBoard = new Point*[size];
+        for(int i = 0; i < size; i++){
+            pBoard[i] = new Point[size];
+        }
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++){
+            pBoard[i][j].x = i;
+            pBoard[i][j].y = j;
+            }
+        }
     }
     
     Board(Board& b){
         size = b.size;
-        pBoard = new char[size*size];
-        *this = b;
+        pBoard = new Point*[size];
+        pBoard[0][0].data = '.';
+        // for (int i = 0; i < size; i++) {
+        //     for (int j = 0; j < size; j++){
+        //         pBoard[i][j].x = i;
+        //         pBoard[i][j].y = j;
+        //     }
+        // }
+        //*this = b;
     }
     
     Board& operator=(char w);
     Board& operator=(Board& b);
     friend ostream& operator<<(ostream& os, Board& b);
     int getIndex(int x,int y);
-    char& operator[](Point p);
+    Point& operator[](Point p);
 };
