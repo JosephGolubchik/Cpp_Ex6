@@ -15,7 +15,12 @@ Point Point::operator=(const char c){
 }
 
 bool Point::operator==(const char c){
-    return data == c;
+    if(data == c){
+        return data == c;
+    }
+    else{
+        throw 0;
+    }
 }
 
 // char operator= (char c, Point& p){ 
