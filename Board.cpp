@@ -27,6 +27,16 @@ Board& Board::operator=(const Board& b){
     return *this;
 }
 
+bool Board::operator == (Board const & r){
+    if(size != r.size) return false;
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if(pBoard[i][j] != r.pBoard[i][j]) return false;
+        }
+    }
+    return true;
+}
+
 
 ostream& operator<<(ostream& os, Board const& b) {  
       for (int i = 0; i < b.size; i++) {
