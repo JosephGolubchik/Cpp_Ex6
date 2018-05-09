@@ -14,6 +14,11 @@ Point Point::operator=(const char c){
     return *this;
 }
 
+Point& Point::operator=(const Point& p){
+    data = p.data;
+    return *this;
+}
+
 Point::operator char(){
     return data;
 }
@@ -26,6 +31,7 @@ Point::operator char(){
 //         throw 0;
 //     }
 // }
+// Point::~Point(){}
 
 bool operator == (Point const & l, char const & r){
     return l.data == r;
