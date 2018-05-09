@@ -34,6 +34,7 @@ class Point{
     }
     
     bool operator==(const char c);
+    operator char();
 };
 
 // char operator=(char c, Point& p);
