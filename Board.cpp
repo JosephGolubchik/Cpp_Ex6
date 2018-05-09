@@ -1,4 +1,5 @@
 #include "Board.h"
+#include "Point.h"
 #include <iostream>
 using namespace std;
 
@@ -42,9 +43,6 @@ int Board::getIndex(int x,int y){
     return index;
 }
 
-//board1[{0,1}] = 'x';
-
-//board1[{0,1}] = 
 Point& Board::operator[](Point p){
     if(p.x < 0 || p.x >= size || p.y < 0 || p.y >= size){
         throw IllegalCoordinateException(p.x, p.y);
@@ -55,17 +53,14 @@ Point& Board::operator[](Point p){
 
 }
 
-// char& Board::operator[](Point p){
-//     if(p.x < 0 || p.x >= size || p.y < 0 || p.y >= size){
-//         throw IllegalCoordinateException(p.x, p.y);
+// void Board::free(){
+//     for(int i = 0; i < size; i++){
+//         delete[] pBoard[i];
 //     }
-//     else if(p.x < 0 || p.x >= size || p.y < 0 || p.y >= size){
-//         throw IllegalCoordinateException(p.x, p.y);
-//     }
-//     else{
-//         int index=getIndex(p.x,p.y);
-//         return pBoard[index];
-//     }
+//     delete[] pBoard;
+// }
 
+// Board::~Board(){
+// 	free();
 // }
 
