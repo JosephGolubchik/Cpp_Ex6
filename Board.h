@@ -28,14 +28,16 @@ class Board {
     Board(Board& b){
         size = b.size;
         pBoard = new Point*[size];
-        pBoard[0][0].data = '.';
-        // for (int i = 0; i < size; i++) {
-        //     for (int j = 0; j < size; j++){
-        //         pBoard[i][j].x = i;
-        //         pBoard[i][j].y = j;
-        //     }
-        // }
-        //*this = b;
+        for(int i = 0; i < size; i++){
+            pBoard[i] = new Point[size];
+        }
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++){
+                pBoard[i][j].x = i;
+                pBoard[i][j].y = j;
+            }
+        }
+        *this = b;
     }
     
     Board& operator=(char w);
