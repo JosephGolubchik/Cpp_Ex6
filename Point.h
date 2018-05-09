@@ -13,6 +13,10 @@ class Point{
         data = '.';
     }
     
+    Point(char c){
+        this->data = c;
+    }
+    
     Point(int x,int y){
         this->x = x;
         this->y = y;
