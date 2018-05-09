@@ -31,6 +31,7 @@ class Point{
     }
     
     Point operator=(const char c);
+    Point& operator=(const Point& p);
     
     friend ostream& operator<<(ostream& os, Point& p) {  
         os << p.data;
