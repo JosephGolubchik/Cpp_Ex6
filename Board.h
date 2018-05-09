@@ -9,8 +9,7 @@ class Board {
     public:
     int size;
     Point **pBoard;
-    char temp;
-    
+
     Board(int size){
         this->size = size;
         pBoard = new Point*[size];
@@ -25,6 +24,8 @@ class Board {
         }
     }
     
+            
+
     Board(const Board& b){
         size = b.size;
         pBoard = new Point*[size];
@@ -46,6 +47,7 @@ class Board {
     int getIndex(int x,int y);
     Point& operator[](Point p);
     const Point& operator[](Point p) const;
+    bool operator == (Board const & r);
     void free();
     ~Board();
 };
