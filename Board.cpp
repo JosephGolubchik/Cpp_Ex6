@@ -1,51 +1,78 @@
-#pragma once
-#include <iostream>
+#include "Board.h"
 #include "Point.h"
-#include "IllegalCoordinateException.h"
-#include "IllegalCharException.h"
+#include <iostream>
 using namespace std;
 
-class Board {
-    public:
-    int size;
-    Point **pBoard;
-    char temp;
-    
-    Board(int size){
-        this->size = size;
-        pBoard = new Point*[size];
-        for(int i = 0; i < size; i++){
-            pBoard[i] = new Point[size];
-        }
+
+Board& Board::operator=(const char w){
+    if(w == '.'|| w == 'O' || w == 'X'){
         for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++){
-            pBoard[i][j].x = i;
-            pBoard[i][j].y = j;
+            for(int j = 0; j < size; j++){
+                pBoard[i][j].data = w;
             }
         }
     }
-    
-    Board(const Board& b){
-        size = b.size;
-        pBoard = new Point*[size];
-        for(int i = 0; i < size; i++){
-            pBoard[i] = new Point[size];
-        }
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++){
-                pBoard[i][j].x = i;
-                pBoard[i][j].y = j;
-            }
-        }
-        *this = b;
+    else{
+        throw IllegalCharException(w);
     }
-    
-    Board& operator=(const char w);
-    Board& operator=(const Board& b);
-    friend ostream& operator<<(ostream& os, Board const& b);
-    int getIndex(int x,int y);
-    Point& operator[](Point p);
-    const Point& operator[](Point p) const;
-    void free();
-    ~Board();
-};
+    return *this;
+}
+
+Board& Board::operator=(const Board& b){
+    for (int i = 0; i < size; i++) {
+        for(int j = 0; j < size; j++){
+            pBoard[i][j].data=b.pBoard[i][j].data;
+        }
+    }
+    return *this;
+}
+
+
+ostream& operator<<(ostream& os, Board const& b) {  
+      for (int i = 0; i < b.size; i++) {
+        for(int j=0; j<b.size; j++){
+            os << b.pBoard[i][j].data;
+        }
+        os << endl;
+      }
+    return os;  
+}
+
+Point& Board::operator[](Point p){
+    if(p.x < 0 || p.x >= size || p.y < 0 || p.y >= size){
+        throw IllegalCoordinateException(p.x, p.y);
+    }
+    else{
+        return pBoard[p.x][p.y];
+    }
+
+}
+
+const Point& Board::operator[](Point p) const{
+    if(p.x < 0 || p.x >= size || p.y < 0 || p.y >= size){
+        throw IllegalCoordinateException(p.x, p.y);
+    }
+    else{
+        return pBoard[p.x][p.y];
+    }
+
+}
+
+void Board::free(){
+    for(int i = 0; i < size; i++)
+        delete[] pBoard[i];
+    delete[] pBoard;
+}
+
+// void Board::free(){
+//     for(int i = 0; i < size; i++){
+//         delete[] pBoard[i];
+//     }
+//     delete[] pBoard;
+// }
+
+Board::~Board(){
+	free();
+}
+
+
