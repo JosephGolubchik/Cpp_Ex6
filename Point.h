@@ -26,24 +26,14 @@ class Point{
         this->data = p.data;
     }
     
+    Point operator=(const char c);
+    
     friend ostream& operator<<(ostream& os, Point& p) {  
-         os << p.data;
-        return os;  
+        os << p.data;
+        return os; 
     }
-    
-    Point operator=(const char c){
-        
-        if (c == '.' || c == 'X' || c == 'O')
-            data = c;
-        else {
-            IllegalCharException ex {c};
-            throw ex;
-        }
-        return *this;
-    }
-    
-
 };
+
     
 
 
